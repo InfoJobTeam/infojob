@@ -31,8 +31,10 @@ git checkout infojob
 
 ```sh
 git commit -a -m "Сообщение коммита"
-git push
+git push origin infojob
 ```
+
+`git pull origin common_develop`  Получение обновлений с репозитория
 
 Pull Request
 ------------
