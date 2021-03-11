@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',       # приложение.файл apps.py.класс MainappConfig
+    'authapp',
 ]
 
 MIDDLEWARE = [
