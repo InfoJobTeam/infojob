@@ -14,5 +14,5 @@ class InfojobUser(AbstractUser):
     email = models.EmailField(max_length=50, unique=True)
     password = models.CharField(max_length=50, verbose_name='пароль')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='cоздано')
-    user_role = models.CharField(choices=ROLE, default=EMPLOYEE, verbose_name='роль')
+    user_role = models.CharField(max_length=25, choices=ROLE, default=EMPLOYEE, verbose_name='роль')
 
