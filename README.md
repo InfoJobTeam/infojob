@@ -24,14 +24,14 @@ _Наша ветка * common_develop_
 
 ```sh
 git branch infojob
-git checkout infojob
+git checkout <user_name>
 ```
 
 Работайте. Затем, как обычно, 
 
 ```sh
 git commit -a -m "Сообщение коммита"
-git push origin infojob
+git push origin <user_name>
 ```
 
 `git pull origin common_develop`  Получение обновлений с репозитория
