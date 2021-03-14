@@ -29,8 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',       # приложение.файл apps.py.класс MainappConfig
-    'authapp',
-    'crispy_forms'
+    'authapp.apps.AuthappConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
