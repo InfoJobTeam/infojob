@@ -56,9 +56,13 @@ def register(request):
 
 
         if register_form.is_valid():
+            register_form.save()
+
+            # Блок проверки совпадения пароля
             new_user = register_form.save(commit=False)
-            new_user.set_password(register_form.cleaned_data['password1'])
+            new_user.set_password(register_form.cleaned_data['password2'])
             new_user.save()
+
             return HttpResponseRedirect(reverse('auth:login'))
 
 
@@ -71,7 +75,7 @@ def register(request):
     return render(request, 'authapp/register.html', context=context)
 
 
- # @login_required
+@login_required
 def edit(request):
     title = 'Редактирование'
 
@@ -81,8 +85,11 @@ def edit(request):
         if edit_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('auth:edit'))
-        else:
-            edit_form = InfojobUserEditForm(instance=request.user)
 
-        context = {'edit_form': edit_form, 'title': title}
-        return render(request, 'authapp/edit.html', context=context)
+    # Перебрасывается сюда если запрос GET
+    else:
+        edit_form = InfojobUserEditForm(instance=request.user)
+
+
+    context = {'title': title, 'edit_form': edit_form }
+    return render(request, 'authapp/edit.html', context=context)

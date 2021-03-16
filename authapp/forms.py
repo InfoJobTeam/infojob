@@ -36,8 +36,9 @@ class InfojobUserRegisterForm(UserCreationForm):
         # self.fields['user_role'].empty_lable = 'Роль не выбрана'
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
-            # field.help_text = ''
+            field.help_text = ''
 
+    # блок проверки совпадения паролей
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password1'] != cd['password2']:
@@ -58,5 +59,7 @@ class InfojobUserEditForm(UserChangeForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
-            if field_name == 'pasword':
+            if field_name == 'password':
                 field.widget = forms.HiddenInput()
+
+
