@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',       # приложение.файл apps.py.класс MainappConfig
     'authapp.apps.AuthappConfig',
+    'employee.apps.EmployeeConfig',
+    'employer.apps.EmployerConfig',
     'crispy_forms',
 ]
 

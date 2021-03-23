@@ -1,0 +1,45 @@
+{% extends "employee/base.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+      <h1><b>Resume ID {{ object }} {{ object.position_seek }}</b></h1>
+  </div>
+  <div class="card-body col-md-9">
+  <table class="table">
+      {% if object %}
+    	<tr>
+        <td><img src="/media/{{ object.user_pic|default:'users/user-placeholder.png' }}" alt="{{ object.family_name }}"> {{ object.user_pic }}</td>
+        <td>{{ object.first_name }}{{ object.middle_name }}{{ object.family_name }}</td>
+      </tr>
+    	{% endif %}
+    	{% if object.gender %}
+    	<tr>
+        <th>Gender</th>
+        <td>{{ object.gender }}</td>
+      </tr>
+    	{% endif %}
+    	{% if object.birthday %}
+    	<tr>
+            <th>Birthday</th>
+            <td>{{ object.birthday }}</td>
+        </tr>
+    	{% endif %}
+        
+        
+        <!--for inline added titles-->
+        {% if object.has_titles %}
+        {% for title in object.has_titles.all %}
+        <tr>
+            <th>Title @{{title.language}}</th>
+            <td>{{title.name}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <!--end-->
+    	
+        </table>
+        <a class="btn btn-outline-info" href="{% url 'mycollections:collection_update' pk=object.id %}">Update</a>
+        <a class="btn btn-outline-danger" href="{% url 'mycollections:collection_delete' pk=object.id %}">Delete</a>
+        </div>
+</div>
+{% endblock content %}

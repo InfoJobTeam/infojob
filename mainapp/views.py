@@ -15,16 +15,7 @@ def index(request):
     # return render(request, template_name='news/index.html', context=context)
 
 
-def employer(request):
-
-    news = News.objects.all()
-
-    # ключи из словарей затем используются в качестве переменных в шаблонах
-    return render(request, 'mainapp/employer.html')
 
 
-def employee(request):
-    news = News.objects.all()
 
-    # ключи из словарей затем используются в качестве переменных в шаблонах
-    return render(request, 'mainapp/employee.html')
+

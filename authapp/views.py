@@ -32,9 +32,9 @@ def login(request):
         role = InfojobUser.objects.get(username=user.username).user_role
         print(role)
         if role == 'EMPLOYER':
-            return HttpResponseRedirect(reverse('main:employer'))
+            return HttpResponseRedirect(reverse('employer:test'))
         else:
-            return HttpResponseRedirect(reverse('main:employee'))
+            return HttpResponseRedirect(reverse('employee:test'))
 
     else:
         context = {'login_form': login_form, 'title': title}
@@ -45,7 +45,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     # return HttpResponseRedirect(reverse('mainapp:index'))
-    return HttpResponseRedirect(reverse('mainapp:employee'))
+    return HttpResponseRedirect(reverse('mainapp:index'))
 
 
 def register(request):
