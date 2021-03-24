@@ -7,7 +7,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 body {
+    background: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding:0;
+
   /*padding-top: 56px;*/
+}
+
+.display {
+    margin-bottom: 150px;
+    padding:0;
+}
+
+
+.container {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    background: none;
+    padding:0;
+}
+
+.card {
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 h1 {
@@ -18,19 +41,6 @@ h2 {
     font-family: 'Lobster', cursive; color: blue;
 }
 
-/*.container {*/
-            /*#max-width: 550px;*/
-            /*#margin: auto;*/
-            /*#background-color: #fff;*/
-            /*-webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);*/
-            /*box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);*/
-/*}*/
-
-/*.header-bar {*/
-    /*#display: flex;*/
-    /*#justify-content: space-between;*/
-    /*#color: #fff;*/
-    /*#padding: 10px;*/
-    /*border-radius: 5px 5px 0 0;*/
-    /*#background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);*/
-/*}*/
+footer {
+    margin-top: 50px;
+}

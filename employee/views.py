@@ -16,7 +16,7 @@ class EmployeeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['collections'] = CV.objects.order_by('id')
+        context['cv'] = CV.objects.order_by('id')
         return context
 
 
@@ -43,13 +43,15 @@ class CvCreate(CreateView):
         data = super(CvCreate, self).get_context_data(**kwargs)
         if self.request.POST:
             data['edu_titles'] = EducationFormSet(self.request.POST)
+            data['job_titles'] = JobExpFormSet(self.request.POST)
         else:
             data['edu_titles'] = EducationFormSet()
+            data['job_titles'] = JobExpFormSet()
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
-        titles = context['titles']
+        titles = context['edu_titles', 'job_titles']
         with transaction.atomic():
             form.instance.created_by = self.request.user
             self.object = form.save()
@@ -76,13 +78,15 @@ class CvUpdate(UpdateView):
         data = super(CvUpdate, self).get_context_data(**kwargs)
         if self.request.POST:
             data['edu_titles'] = EducationFormSet(self.request.POST, instance=self.object)
+            data['job_titles'] = JobExpFormSet(self.request.POST, instance=self.object)
         else:
             data['edu_titles'] = EducationFormSet(instance=self.object)
+            data['job_titles'] = JobExpFormSet(instance=self.object)
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
-        titles = context['edu_titles']
+        titles = context['edu_titles', 'job_titles']
         with transaction.atomic():
             form.instance.created_by = self.request.user
             self.object = form.save()
@@ -102,7 +106,7 @@ class CvUpdate(UpdateView):
 class CvDelete(DeleteView):
     model = CV
     template_name = 'employee/confirm_delete.html'
-    success_url = reverse_lazy('mycollections:homepage')
+    success_url = reverse_lazy('employee:employee')
 
 
 

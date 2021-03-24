@@ -43,7 +43,6 @@ class JobExp(models.Model):
     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name="experiences")
     # object.experiences.all()
     employer = models.CharField(max_length=150, verbose_name='работодатель')
-    employer_link = models.URLField(max_length=150, verbose_name='ссылка', blank=True)
     position = models.CharField(max_length=150, verbose_name='должность')
     start_at = models.DateField(verbose_name='начало работы')
     finish_at = models.DateField(verbose_name='дата увольнения')

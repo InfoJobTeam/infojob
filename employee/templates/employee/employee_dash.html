@@ -3,7 +3,7 @@
 
 {% block content %}
   <!-- Container -->
-  <div class="container">
+  <div class="container display">
     <!-- My resumes card -->
     <div class="card">
       <div class="card-header">
@@ -11,10 +11,10 @@
       <a class="btn btn-outline-primary" href="{% url 'employee:cv_create' %}" role="button">Create new resume</a>
       </div>
       <div class="card-body">
-        {% if collections %}
-        {% for object in collections %}
+        {% if cv %}
+        {% for object in cv %}
           <li>
-              <a href="{% url 'mycollections:collection_detail' pk=object.pk %}">Resume ID {{ object }}</a>
+              <a href="{% url 'employee:cv_detail' pk=object.pk %}">Resume ID {{ object }}</a>
           </li>
         {% endfor %}
         {% else %}

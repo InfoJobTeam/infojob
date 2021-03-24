@@ -2,7 +2,7 @@ import re
 from django import forms
 from django.forms.models import inlineformset_factory
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Div, Row, HTML, ButtonHolder, Submit
+from crispy_forms.layout import Layout, Field, Fieldset, Div, Row, Column, HTML, ButtonHolder, Submit
 from .custom_layout_object import Formset
 from .models import *
 
@@ -20,25 +20,33 @@ class JobExpForm(forms.ModelForm):
 
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.helper.form_class = 'form-horizontal '
-        # self.helper.label_class = 'col-md-3 create-label'
-        self.helper.field_class = 'col-md-9'
-        self.helper.css_class = 'formset_row-{}'.format(formtag_prefix)
+        # self.helper.label_class = 'col-md-5 create-label'
+        # self.helper.field_class = 'col-md-9'
         self.helper.layout = Layout(
             Row(
-                Field('employer', css_class='col-md-5'),
-                Field('employer_link', css_class='col-md-4')),
-            Row(
-                Field('position', css_class='col-md-3'),
-                Field('start_at', css_class='col-md-3'),
-                Field('finish_at', css_class='col-md-3')),
-            Field('duties'),
+                Div(
+                    Row(
+                        Column('employer', css_class='form-group col-md-6 mb-0'),
+                        Column('position', css_class='form-group col-md-6 mb-0'),
+                        css_class='form-row'
+                    ),
+                    Row(
+                        Column('start_at', css_class='form-group col-md-6 mb-0'),
+                        Column('finish_at', css_class='form-group col-md-6 mb-0'),
+                        css_class='form-row'
+                    ),
+                    Row(
+                        Column('duties', css_class='form-group col-md-8 mb-0'),
+                        css_class='form-row'
+                    ), css_class='form-group col-md-9 mb-0'
+                ), css_class='formset_row-{}'.format(formtag_prefix)
+            )
         )
 
 
 JobExpFormSet = inlineformset_factory(
     CV, JobExp, form=JobExpForm,
-    fields=['employer', 'employer_link', 'position', 'start_at', 'finish_at', 'duties'], extra=1, can_delete=True
+    fields=['employer', 'position', 'start_at', 'finish_at', 'duties'], extra=1, can_delete=True
 )
 
 
@@ -109,8 +117,9 @@ class CVForm(forms.ModelForm):
                 Field('is_active'),
                 Fieldset('Add Education',
                          Formset('edu_titles')),    #   Formset берется из custom_layout_object.py
-                # Fieldset('Add Job Experience',
-                #          Formset('job_titles')),
+                HTML("<br>"),
+                Fieldset('Add Job Experience',
+                         Formset('job_titles')),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'Save')),
             )

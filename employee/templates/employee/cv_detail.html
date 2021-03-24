@@ -26,20 +26,36 @@
     	{% endif %}
         
         
-        <!--for inline added titles-->
-        {% if object.has_titles %}
-        {% for title in object.has_titles.all %}
+        <!--for inline added edu_titles-->
+        {% if object.edu_titles %}
+        {% for title in object.edu_titles.all %}
         <tr>
-            <th>Title @{{title.language}}</th>
-            <td>{{title.name}}</td>
+            <th>Title {{edu_titles.college_name}}</th>
+            <td>{{edu_titles.specialization}}</td>
+            <td>{{edu_titles.grade}}</td>
+            <td>{{edu_titles.graduated_at}}</td>
         </tr>
         {% endfor %}
         {% endif %}
         <!--end-->
+        <!--for inline added job_titles-->
+        {% if object.job_titles %}
+        {% for title in object.job_titles.all %}
+        <tr>
+            <th>Title {{job_titles.employer}}</th>
+            <td>{{job_titles.employer_link}}</td>
+            <td>{{job_titles.position}}</td>
+            <td>{{job_titles.start_at}}</td>
+            <td>{{job_titles.finish_at}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+
     	
         </table>
-        <a class="btn btn-outline-info" href="{% url 'mycollections:collection_update' pk=object.id %}">Update</a>
-        <a class="btn btn-outline-danger" href="{% url 'mycollections:collection_delete' pk=object.id %}">Delete</a>
+        <a class="btn btn-outline-info" href="{% url 'employee:cv_update' pk=object.id %}">Update</a>
+        <a class="btn btn-outline-danger" href="{% url 'employee:cv_delete' pk=object.id %}">Delete</a>
         </div>
 </div>
 {% endblock content %}
