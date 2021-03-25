@@ -21,7 +21,7 @@ class EmployeeView(TemplateView):
 
 
 ##########################################################################
-#                           Collection views                             #
+#                           CV  views                           #
 ##########################################################################
 
 class CvDetailView(DetailView):
@@ -46,6 +46,7 @@ class CvCreate(CreateView):
         else:
             data['title'] = JobExpFormSet()
         return data
+
 
     def form_valid(self, form):
         context = self.get_context_data()
@@ -75,7 +76,7 @@ class CvUpdate(UpdateView):
     def get_context_data(self, **kwargs):
         data = super(CvUpdate, self).get_context_data(**kwargs)
         if self.request.POST:
-            data['title'] = JobExpFormSet(self.request.POST, self.request.FILES, instance=self.object)
+            data['title'] = JobExpFormSet(self.request.POST, instance=self.object)
         else:
             data['title'] = JobExpFormSet(instance=self.object)
         return data

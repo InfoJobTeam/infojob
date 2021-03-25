@@ -2,14 +2,14 @@
 {% block content %}
 <div class="card">
   <div class="card-header">
-      <h1><b>Resume ID {{ object }} {{ object.position_seek }}</b></h1>
+      <h1><b>Resume:     {{ object }} </b></h1>
   </div>
   <div class="card-body col-md-9">
   <table class="table">
       {% if object %}
     	<tr>
-        <td><img src="/media/{{ object.user_pic|default:'users/user-placeholder.png' }}" alt="{{ object.family_name }}"> {{ object.user_pic }}</td>
-        <td>{{ object.first_name }}{{ object.middle_name }}{{ object.family_name }}</td>
+        <td><img src="/media/{{ object.user_pic|default:'users/user-placeholder.png' }}" alt="{{ object.family_name }}"></td>
+        <td>{{ object.first_name }}  {{ object.middle_name }}  {{ object.family_name }}</td>
       </tr>
     	{% endif %}
     	{% if object.gender %}
@@ -26,18 +26,18 @@
     	{% endif %}
         
         
-        <!--for inline added edu_titles-->
-        {% if object.edu_titles %}
-        {% for title in object.edu_titles.all %}
-        <tr>
-            <th>Title {{edu_titles.college_name}}</th>
-            <td>{{edu_titles.specialization}}</td>
-            <td>{{edu_titles.grade}}</td>
-            <td>{{edu_titles.graduated_at}}</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-        <!--end-->
+{#        <!--for inline added edu_titles-->#}
+{#        {% if object.edu_titles %}#}
+{#        {% for title in object.edu_titles.all %}#}
+{#        <tr>#}
+{#            <th>Title {{edu_titles.college_name}}</th>#}
+{#            <td>{{edu_titles.specialization}}</td>#}
+{#            <td>{{edu_titles.grade}}</td>#}
+{#            <td>{{edu_titles.graduated_at}}</td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{#        {% endif %}#}
+{#        <!--end-->#}
         <!--for inline added job_titles-->
         {% if object.job_titles %}
         {% for title in object.job_titles.all %}

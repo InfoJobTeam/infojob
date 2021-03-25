@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'employee.apps.EmployeeConfig',
     'employer.apps.EmployerConfig',
     'crispy_forms',
+    'dynamic_formsets',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 AUTH_USER_MODEL = 'authapp.InfojobUser'
