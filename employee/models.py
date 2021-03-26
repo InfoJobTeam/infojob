@@ -11,8 +11,8 @@ class CV(models.Model):
     F = 'FEMALE'
     SEX = [(M, 'Male'), (F, 'Female')]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cv')
-    #dash = request.user.cv.all()  для доступа ко всем резюме пользователя
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cv')
+    #dash = request.created_by.cv.all()  для доступа ко всем резюме пользователя
     user_pic = models.ImageField(upload_to='users/%Y/%m/%d/', verbose_name='Фото', blank=True)
     position_seek = models.CharField(max_length=250, verbose_name='желаемая должность')
     compensation_seek = models.PositiveIntegerField(verbose_name='желаемая зарплата')
@@ -28,7 +28,7 @@ class CV(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')
 
     def __str__(self):
-        return f"{self.family_name} {self.first_name}, {self.position_seek}, ${self.compensation_seek}"
+        return f"{self.family_name} {self.first_name}, {self.position_seek}"
 
     class Meta:
         verbose_name = 'Резюме'

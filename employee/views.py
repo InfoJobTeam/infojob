@@ -40,15 +40,24 @@ class CvCreate(CreateView):
     success_url = None
 
     def get_context_data(self, **kwargs):
+        print("Im POST-1")
         data = super(CvCreate, self).get_context_data(**kwargs)
+        print("Im POST-2")
         if self.request.POST:
             data['title'] = JobExpFormSet(self.request.POST)
+            print("Im POST-3")
         else:
             data['title'] = JobExpFormSet()
+            print("Im GET from get_context_data")
+        print(f'Im DATA {data}')
         return data
 
+    print('pre-value')
+
     def form_valid(self, form):
+        print('Valid-1')
         context = self.get_context_data()
+        print(f'Im context {context}')
         titles = context['title']
         with transaction.atomic():
             form.instance.created_by = self.request.user
