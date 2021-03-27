@@ -46,6 +46,22 @@ class JobExp(models.Model):
 
 
 
+# class Education(models.Model):
+#
+#     BACHALOR = 'БАКАЛАВР'
+#     MASTER = 'МАГИСТР'
+#     DOCTOR = 'ДОКТОР'
+#     SPECIALIST = 'СПЕЦИАЛИСТ'
+#     GRADE = [(BACHALOR, 'Бакалавр'), (MASTER, 'Магистр'), (DOCTOR, 'Доктор'), (SPECIALIST, 'Специалист')]
+#
+#     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name="educations")
+#     # object.educations.all()
+#     college_name = models.CharField(max_length=150, verbose_name='Учебное заведение')
+#     specialization = models.CharField(max_length=150, verbose_name='специальность')
+#     grade = models.CharField(max_length=150, choices=GRADE, verbose_name='степень')
+#     graduated_at = models.DateField(verbose_name='окончание учебы')
+
+
 # class AddFavoriteVacancy(models.Model):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favorite')
 #     favorite_vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, verbose_name='избранные вакансии')
