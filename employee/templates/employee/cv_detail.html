@@ -9,26 +9,48 @@
       {% if object %}
     	<tr>
         <td><img src="/media/{{ object.user_pic|default:'users/user-placeholder.png' }}" alt="{{ object.family_name }}"></td>
-        <td>{{ object.first_name }}  {{ object.middle_name }}  {{ object.family_name }}</td>
+        <td><h3>{{ object.first_name }}  {{ object.middle_name }}  {{ object.family_name }}</h3></td>
       </tr>
     	{% endif %}
     	{% if object.gender %}
+
     	<tr>
         <th>Gender</th>
-        <td>{{ object.gender }}</td>
+        <td><h6>{{ object.gender }}</h6></td>
       </tr>
     	{% endif %}
     	{% if object.birthday %}
-    	<tr>
+    	  <tr>
             <th>Birthday</th>
-            <td>{{ object.birthday }}</td>
+            <td><h6>{{ object.birthday }}</h6></td>
         </tr>
     	{% endif %}
-        
-        
+
+      {% if object.city %}
+    	  <tr>
+            <th>City</th>
+            <td><h6>{{ object.city }}</h6></td>
+        </tr>
+    	{% endif %}
+
+      {% if object.email %}
+    	  <tr>
+            <th>Email</th>
+            <td><h6>{{ object.email }}</h6></td>
+        </tr>
+    	{% endif %}
+
+      {% if object.profession %}
+    	  <tr>
+            <th>Profession</th>
+            <td><h6>{{ object.profession }}</h6></td>
+        </tr>
+    	{% endif %}
+
+
 {#        <!--for inline added edu_titles-->#}
 {#        {% if object.edu_titles %}#}
-{#        {% for title in object.edu_titles.all %}#}
+{#        {% for title in object.cv.all %}#}
 {#        <tr>#}
 {#            <th>Title {{edu_titles.college_name}}</th>#}
 {#            <td>{{edu_titles.specialization}}</td>#}
@@ -38,24 +60,40 @@
 {#        {% endfor %}#}
 {#        {% endif %}#}
 {#        <!--end-->#}
-        <!--for inline added job_titles-->
-        {% if object.job_titles %}
-        {% for title in object.job_titles.all %}
-        <tr>
-            <th>Title {{job_titles.employer}}</th>
-            <td>{{job_titles.employer_link}}</td>
-            <td>{{job_titles.position}}</td>
-            <td>{{job_titles.start_at}}</td>
-            <td>{{job_titles.finish_at}}</td>
+    <tr>
+      <th><h4 style="color: #092fee">Experience</h4></th>
+    </tr>
+
+
+        <!--for inline added job -->
+      {% if object.experiences %}
+      {% for title in object.experiences.all %}
+      <tr>
+        <th>Employer</th>
+        <th>Position</th>
+        <th>Hired</th>
+        <th>Fired</th>
+      </tr>
+      <tr>
+        <td>{{title.employer}}</td>
+        <td>{{title.position}}</td>
+        <td>{{title.start_at}}</td>
+        <td>{{title.finish_at}}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+
+      {% if object.created_at %}
+    	  <tr>
+            <th>Created at</th>
+            <td><h6>{{ object.created_at }}</h6></td>
         </tr>
-        {% endfor %}
-        {% endif %}
-
-
+    	{% endif %}
     	
         </table>
         <a class="btn btn-outline-info" href="{% url 'employee:cv_update' pk=object.id %}">Update</a>
         <a class="btn btn-outline-danger" href="{% url 'employee:cv_delete' pk=object.id %}">Delete</a>
         </div>
 </div>
+
 {% endblock content %}
