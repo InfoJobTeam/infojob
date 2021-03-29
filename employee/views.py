@@ -53,7 +53,7 @@ class CollectionCreate(CreateView):
 
     def form_valid(self, form):
         context = self.get_context_data()
-        print(f'context {context}')
+        # print(f'context {context}')
         titles = context['title']
         with transaction.atomic():
             form.instance.created_by = self.request.user

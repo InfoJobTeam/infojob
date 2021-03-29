@@ -10,6 +10,4 @@ urlpatterns = [
     path('create/', CollectionCreate.as_view(), name='cv_create'),
     path('update/<int:pk>/', CollectionUpdate.as_view(), name='cv_update'),
     path('delete/<int:pk>/', CollectionDelete.as_view(), name='cv_delete'),
-
-
-	]
+]

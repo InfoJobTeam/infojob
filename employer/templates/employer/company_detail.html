@@ -1,0 +1,50 @@
+{% extends "employer/base.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+      <h1><b>Resume:     {{ object }} </b></h1>
+  </div>
+  <div class="card-body col-md-9">
+  <table class="table">
+      {% if object %}
+    	<tr>
+        <td><img src="/media/{{ object.logo_pic|default:'companies/logo-placeholder.png' }}" alt="{{ object.company_name }}"></td>
+        <td><h3>{{ object.company_name }}</h3></td>
+      </tr>
+    	{% endif %}
+    	{% if object.industry_name %}
+
+    	<tr>
+        <th>Industry</th>
+        <td><h6>{{ object.industry_name }}</h6></td>
+      </tr>
+
+      {% if object.site_link %}
+    	  <tr>
+            <th>Site</th>
+            <td><h6>{{ object.site_link }}</h6></td>
+        </tr>
+    	{% endif %}
+
+      {% if object.email %}
+    	  <tr>
+            <th>Email</th>
+            <td><h6>{{ object.email }}</h6></td>
+        </tr>
+    	{% endif %}
+
+
+      {% if object.created_at %}
+    	  <tr>
+            <th>Created at</th>
+            <td><h6>{{ object.created_at }}</h6></td>
+        </tr>
+    	{% endif %}
+    	
+        </table>
+        <a class="btn btn-outline-info" href="{% url 'employer:company_update' pk=object.id %}">Update</a>
+        <a class="btn btn-outline-danger" href="{% url 'employee:company_delete' pk=object.id %}">Delete</a>
+        </div>
+</div>
+
+{% endblock content %}
