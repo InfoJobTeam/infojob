@@ -2,12 +2,37 @@
 {% load static %}
 
 {% block content %}
-  <!-- Container -->
+
+  <!-- Container for companies-->
   <div class="container">
     <!-- My resumes card -->
     <div class="card">
       <div class="card-header">
-      <h1>My Resume</h1>
+      <h1>My Companies</h1>
+      <a class="btn btn-outline-primary" href="{% url 'mycollections:collection_create' %}" role="button">Create new resume</a>
+      </div>
+      <div class="card-body">
+        {% if collections %}
+        {% for object in collections %}
+          <li>
+              <a href="{% url 'mycollections:collection_detail' pk=object.pk %}">Resume ID {{ object }}</a>
+          </li>
+        {% endfor %}
+        {% else %}
+          <p>No resume so far</p>
+        {% endif %}
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Container -->
+
+  <!-- Container for companies-->
+  <div class="container">
+    <!-- My resumes card -->
+    <div class="card">
+      <div class="card-header">
+      <h1>My Vacancies</h1>
       <a class="btn btn-outline-primary" href="{% url 'mycollections:collection_create' %}" role="button">Create new resume</a>
       </div>
       <div class="card-body">
@@ -24,7 +49,4 @@
     </div>
     <!-- End Card -->
 
-
-  </div>
-  <!-- End Container -->
 {% endblock %}

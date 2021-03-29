@@ -60,3 +60,20 @@ class JobExp(models.Model):
 #     specialization = models.CharField(max_length=150, verbose_name='специальность')
 #     grade = models.CharField(max_length=150, choices=GRADE, verbose_name='степень')
 #     graduated_at = models.DateField(verbose_name='окончание учебы')
+
+
+
+# class AddFavoriteVacancy(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_favorite')
+#     favorite = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='wish_vacancy')
+#     # comments = models.TextField(verbose_name='коментарий')
+#     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
+
+
+# class Response(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_response')
+#     cv = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='my_cv')
+#     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='to_vacancy')
+#     comments = models.TextField(verbose_name='коментарий', blank=True)
+#     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
+#     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')

@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 # from employee.models import CV
 
-# Create your models here.
 
 class Company(models.Model):
 
@@ -20,7 +19,7 @@ class Company(models.Model):
 
 
 class Vacancy(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='have_invitation' )
     position = models.CharField(max_length=150, verbose_name='должность')
     city = models.CharField(max_length=150, verbose_name='город')
     duties = models.TextField(verbose_name='обязанности')
@@ -30,15 +29,17 @@ class Vacancy(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')
 
-# class AddFavoriteVacancy(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favorite')
-#     favorite_vc = models.ForeignKey(CV, on_delete=models.CASCADE, verbose_name='избранные резюме')
+
+# class AddFavoriteCv(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_favorite')
+#     favorite_cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='wish_cv')
 #     # comments = models.TextField(verbose_name='коментарий')
 
 
 # class Invitation(models.Model):
-#     cv = models.ForeignKey(CV, on_delete=models.CASCADE, verbose_name='резюме')
-#     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, verbose_name='мои вакансии')
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_invitation')
+#     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='to_cv')
+#     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='my_vacancy')
 #     comments = models.TextField(verbose_name='коментарий', blank=True)
 #     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
 #     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')
