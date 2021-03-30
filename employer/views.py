@@ -17,12 +17,8 @@ class HomepageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['company'] = Company.objects.order_by('id')
-        context['have_invitation'] = Vacancy.objects.order_by('id')
+        # context['have_invitation'] = Vacancy.objects.order_by('id')
         return context
-
-
-class CollectionCreate(CreateView):
-    pass
 
 
 
@@ -32,9 +28,12 @@ class CompanyDetail(DetailView):
     template_name = 'employer/company_detail.html'
 
 
+
+
 class CompanyCreate(CreateView):
     model = Company
-    exclude = ['created_at', 'updated_at']
+    template_name = 'employer/company_create.html'
+    fields = ['company_name', 'industry_name', 'logo_pic', 'email', 'site_link', 'is_active']
     success_url = None
 
     def form_valid(self, form):
@@ -47,7 +46,8 @@ class CompanyCreate(CreateView):
 
 class CompanyUpdate(UpdateView):
     model = Company
-    exclude = ['created_at', 'updated_at']
+    template_name = 'employer/company_update.html'
+    fields = ['company_name', 'industry_name', 'logo_pic', 'email', 'site_link', 'is_active']
     success_url = None
 
     def get_success_url(self):
@@ -57,5 +57,6 @@ class CompanyUpdate(UpdateView):
 class CompanyDelete(DeleteView):
     model = Company
     context_object_name = 'company'
+    template_name = 'employer/confirm_delete.html'
     success_url = reverse_lazy('employer:employer')
 

@@ -9,7 +9,7 @@ class Company(models.Model):
     #dash = request.user.company.all()  для доступа ко всем компаниям пользователя
     company_name = models.CharField(max_length=150, verbose_name='Наименование')
     industry_name = models.CharField(max_length=150, verbose_name='индустрия')
-    logo_pic = models.ImageField(upload_to='companies/%Y/%m/%d/', verbose_name='Логотип', default='companies/logo-placeholder.png')
+    logo_pic = models.ImageField(upload_to='companies/%Y/%m/%d/', verbose_name='Логотип')
     email = models.EmailField(max_length=150, unique=True)
     site_link = models.URLField(max_length=150, verbose_name='ссылка на сайт', blank=True)
     is_active = models.BooleanField(default=True, verbose_name='Активно')

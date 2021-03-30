@@ -3,24 +3,36 @@
 
 {% block content %}
 
-  <div class="container mb-lg-4 mt-lg-4">
-    <h2>Dashbord</h2> <h3>Hello {{request.user}}</h3>
+  <div class="container ">
+    <nav aria-label="breadcrumb ">
+      <ol class="breadcrumb alert alert-success">
+        {#      <li class="breadcrumb-item"><a href="#">Home</a></li>#}
+        <li class="breadcrumb-item active" aria-current="page">employer/</li>
+      </ol>
+    </nav>
   </div>
-  <!-- Container for companies-->
+
+
+  <div class="container mb-lg-4 mt-lg-4">
+    <h2>Dashbord</h2>
+    {#    <h3>Hello {{ request.user }}</h3>#}
+  </div>
+
+  <!-- Container for Companies-->
   <div class="container mb-lg-4">
-    <!-- My resumes card -->
+    <!-- My Companies card -->
     <div class="card mb-lg-4">
       <div class="card-header">
-      <h1>My Companies</h1>
-      <a class="btn btn-outline-primary" href="" role="button">Create New Company</a>
+        <h3>My Companies</h3>
+        <a class="btn btn-outline-primary" href="{% url 'employer:company_create' %}" role="button">Create New Company</a>
       </div>
       <div class="card-body">
-        {% if collections %}
-        {% for object in collections %}
-          <li>
-              <a href="">Company ID {{ object }}</a>
-          </li>
-        {% endfor %}
+        {% if company %}
+          {% for object in company %}
+            <li>
+              <a href="{% url "employer:company_detail" pk=object.pk%}">Company {{ object.company_name }}</a>
+            </li>
+          {% endfor %}
         {% else %}
           <p>No companies so far</p>
         {% endif %}
@@ -30,27 +42,71 @@
   </div>
   <!-- End Container -->
 
-  <!-- Container for companies-->
-  <div class="container mb-lg-4">
-    <!-- My resumes card -->
-    <div class="card mb-lg-4">
-      <div class="card-header">
-      <h1>My Vacancies</h1>
-      <a class="btn btn-outline-primary" href="" role="button">Create New Vacancy</a>
+
+  <div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+           aria-selected="true">Company1</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+           aria-selected="false">Company2</a>
+      </li>
+
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <div>
+          <!-- My resumes card -->
+          <div class="card mb-lg-4">
+            <div class="card-header">
+              <h2>My Vacancies</h2>
+              <a class="btn btn-outline-primary" href="" role="button">Create New Vacancy</a>
+            </div>
+            <div class="card-body">
+              {% if collections %}
+                {% for object in collections %}
+                  <li>
+                    <a href="">Vacancy ID {{ object }}</a>
+                  </li>
+                {% endfor %}
+              {% else %}
+                <p>No vacancies so far</p>
+              {% endif %}
+            </div>
+          </div>
+          <!-- End Card -->
+        </div>
       </div>
-      <div class="card-body">
-        {% if collections %}
-        {% for object in collections %}
-          <li>
-              <a href="">Vacancy ID {{ object }}</a>
-          </li>
-        {% endfor %}
-        {% else %}
-          <p>No vacancies so far</p>
-        {% endif %}
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div>
+          <!-- My resumes card -->
+          <div class="card mb-lg-4">
+            <div class="card-header">
+              <h2>My Vacancies</h2>
+              <a class="btn btn-outline-primary" href="" role="button">Create New Vacancy</a>
+            </div>
+            <div class="card-body">
+              {% if collections %}
+                {% for object in collections %}
+                  <li>
+                    <a href="">Vacancy ID {{ object }}</a>
+                  </li>
+                {% endfor %}
+              {% else %}
+                <p>No vacancies so far</p>
+              {% endif %}
+            </div>
+          </div>
+          <!-- End Card -->
+        </div>
       </div>
     </div>
-    <!-- End Card -->
+{#    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">test3</div>#}
   </div>
+
+
 
 {% endblock %}
