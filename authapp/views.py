@@ -41,7 +41,7 @@ def login(request):
         return render(request, 'authapp/login.html', context=context)
 
 
-# @login_required
+@login_required
 def logout(request):
     auth.logout(request)
     # return HttpResponseRedirect(reverse('mainapp:index'))
@@ -84,7 +84,14 @@ def edit(request):
 
         if edit_form.is_valid():
             edit_form.save()
-            return HttpResponseRedirect(reverse('auth:edit'))
+
+            role = InfojobUser.objects.get(username=request.user.username).user_role
+            print(role)
+            if role == 'EMPLOYER':
+                return HttpResponseRedirect(reverse('employer:employer'))
+            else:
+                return HttpResponseRedirect(reverse('employee:employee'))
+            # return HttpResponseRedirect(reverse('auth:edit'))
 
     # Перебрасывается сюда если запрос GET
     else:

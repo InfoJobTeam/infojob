@@ -27,7 +27,7 @@ class InfojobUserLoginForm(AuthenticationForm):
 class InfojobUserRegisterForm(UserCreationForm):
     class Meta:
         model = InfojobUser
-        fields = ('username', 'email', 'password1',  'password2', 'user_role')
+        fields = ('username', 'first_name', 'email', 'avatar', 'password1',  'password2', 'user_role')
 
 
 
@@ -50,7 +50,7 @@ class InfojobUserRegisterForm(UserCreationForm):
 class InfojobUserEditForm(UserChangeForm):
     class Meta:
         model = InfojobUser
-        fields = ('username', 'email', 'user_role', 'avatar', 'password')
+        fields = ('username', 'first_name', 'avatar', 'email', 'user_role', 'password')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -21,11 +21,13 @@ h1 {
 
 h2 {
     /*font-family: 'Lobster', cursive; */
-    color: blue;
+    color: lightseagreen;
 }
 
 
-
+footer {
+    margin-top: 150px;
+}
 
 /*.container {*/
     /*max-width: 550px;*/

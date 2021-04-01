@@ -15,7 +15,7 @@ from django.http import HttpResponse
 
 
 class HomepageView(TemplateView):
-    template_name = "employee/base.html"
+    template_name = "employee/index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -99,9 +99,6 @@ class CollectionUpdate(UpdateView):
     def get_success_url(self):
         return reverse_lazy('employee:cv_detail', kwargs={'pk': self.object.pk})
 
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super(CollectionUpdate, self).dispatch(*args, **kwargs)
 
 
 class CollectionDelete(DeleteView):

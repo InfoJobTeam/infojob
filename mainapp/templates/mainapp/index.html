@@ -10,10 +10,10 @@
       <div class="col-md-8 mb-5">
         <h2>What We Do</h2>
         <hr>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi
           soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam.
           Repellat explicabo, maiores!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
           magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt
           voluptate. Voluptatum.</p>
         <a class="btn btn-primary btn-lg" href="{% url 'authapp:login' %}">Call to Action &raquo;</a>
@@ -60,7 +60,7 @@
                       {% endif %}
                       <div class="media-body">
                         <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.title }}</h5>
-                        <p class="card-text">{{ item.content|linebreaks|truncatewords:50 }}</p>
+                        <p class="card-text text-muted">{{ item.content|linebreaks|truncatewords:50 }}</p>
                         <a href="#" class="btn btn-primary">Read more...</a>
                       </div>
                     </div>
