@@ -1,5 +1,6 @@
 {% extends 'employer/base.html' %}
 {% load static %}
+{% load filter_tags %}
 
 {% block content %}
 
@@ -14,7 +15,8 @@
 
 
   <div class="container mb-lg-4 mt-lg-4">
-    <h2>Dashbord</h2>
+    <h2>Employer {{ request.user.first_name }} Dashbord</h2>
+    <hr>
     {#    <h3>Hello {{ request.user }}</h3>#}
   </div>
 
@@ -24,13 +26,14 @@
     <div class="card mb-lg-4">
       <div class="card-header">
         <h3>My Companies</h3>
-        <a class="btn btn-outline-primary" href="{% url 'employer:company_create' %}" role="button">Create New Company</a>
+        <a class="btn btn-outline-primary" href="{% url 'employer:company_create' %}" role="button">Create New
+          Company</a>
       </div>
       <div class="card-body">
         {% if company %}
-          {% for object in company %}
+          {% for object in company|in_user_category:user %}
             <li>
-              <a href="{% url "employer:company_detail" pk=object.pk%}">Company {{ object.company_name }}</a>
+              <a href="{% url "employer:company_detail" pk=object.pk %}">Company {{ object.company_name }}</a>
             </li>
           {% endfor %}
         {% else %}
@@ -40,36 +43,40 @@
     </div>
     <!-- End Card -->
   </div>
-  <!-- End Container -->
+  <!-- End Container for companies -->
 
 
+
+  <!-- Container for Vacancies-->
   <div class="container">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-           aria-selected="true">Company1</a>
+           >Company1</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-           aria-selected="false">Company2</a>
+           >Company2</a>
       </li>
-
     </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  </div>
 
+  <div class="container">
+    <div class="tab-content" id="myTabContent">
+      <!-- My vacancy tab 1 -->
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <div>
-          <!-- My resumes card -->
+          <!-- My vacancy card 1 -->
           <div class="card mb-lg-4">
             <div class="card-header">
               <h3>My Vacancies</h3>
-              <a class="btn btn-outline-primary" href="" role="button">Create New Vacancy</a>
+              <a class="btn btn-outline-primary" href="{% url 'employer:vacancy_create' %}" role="button">Create New Vacancy</a>
             </div>
             <div class="card-body">
-              {% if collections %}
-                {% for object in collections %}
+              {% if vacancy %}
+                {% for object in vacancy %}
                   <li>
-                    <a href="">Vacancy ID {{ object }}</a>
+                    <a href="{% url 'employer:vacancy_detail' pk=object.pk %}">Vacancy ID {{ object }}</a>
                   </li>
                 {% endfor %}
               {% else %}
@@ -80,19 +87,22 @@
           <!-- End Card -->
         </div>
       </div>
+
+
+      <!-- My vacancy tab 2 -->
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div>
-          <!-- My resumes card -->
+          <!-- My resumes card 2 -->
           <div class="card mb-lg-4">
             <div class="card-header">
               <h3>My Vacancies</h3>
-              <a class="btn btn-outline-primary" href="" role="button">Create New Vacancy</a>
+              <a class="btn btn-outline-primary" href="{% url 'employer:vacancy_create' %}" role="button">Create New Vacancy</a>
             </div>
             <div class="card-body">
-              {% if collections %}
-                {% for object in collections %}
+              {% if vacancy %}
+                {% for object in vacancy %}
                   <li>
-                    <a href="">Vacancy ID {{ object }}</a>
+                    <a href="{% url 'employer:vacancy_detail' pk=object.pk %}">Vacancy ID {{ object }}</a>
                   </li>
                 {% endfor %}
               {% else %}
@@ -104,9 +114,8 @@
         </div>
       </div>
     </div>
-{#    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">test3</div>#}
+
   </div>
-
-
+  <!-- End Container for Vacancies-->
 
 {% endblock %}

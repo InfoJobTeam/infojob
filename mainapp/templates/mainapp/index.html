@@ -10,10 +10,12 @@
       <div class="col-md-8 mb-5">
         <h2>What We Do</h2>
         <hr>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore
+          recusandae animi
           soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam.
           Repellat explicabo, maiores!</p>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur
+          consequatur
           magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt
           voluptate. Voluptatum.</p>
         <a class="btn btn-primary btn-lg" href="{% url 'authapp:login' %}">Call to Action &raquo;</a>
@@ -36,14 +38,14 @@
         </address>
       </div>
     </div>
-    <!-- /.row -->
+    <!-- /. row -->
     <div class="row">
       <div class="col-md-12 mb-5">
         <h2>News</h2>
         <hr>
 
         <div class="container mt-3">
-          <h1>{{ title }}</h1>
+          {#          <h1>{{ title }}</h1>#}
           <div class="row">
             <div class="col-md-12">
               {% for item in news %}
@@ -78,84 +80,28 @@
         <!-- /.container -->
       </div>
     </div>
+    <!-- /.row -->
+
+    <!-- row headline -->
     <div class="row">
       <div class="col-md-12 mb-5">
         <h2>Our Partners</h2>
         <hr>
       </div>
     </div>
+
+    <!-- row our partners -->
     <div class="row">
-      <div class="col-md-2 mb-5">
-        <div class="card h-90">
-          <img class="card-img-top" src="https://placehold.it/150x100" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
+      {% for item in companies %}
+        <div class="col-lg-2 col-md-6 mb-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="{{ item.logo_pic.url }}" alt="{{ item.company_name }}" width="150">
           </div>
         </div>
-      </div>
-      <div class="col-md-2 mb-5">
-        <div class="card h-90">
-          <img class="card-img-top" src="https://placehold.it/150x100" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 mb-5">
-        <div class="card h-90">
-          <img class="card-img-top" src="https://placehold.it/150x100" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-2 mb-5">
-        <div class="card h-90">
-          <img class="card-img-top" src="https://placehold.it/150x100" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 mb-5">
-        <div class="card h-90">
-          <img class="card-img-top" src="https://placehold.it/150x100" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 mb-5">
-        <div class="card h-90">
-          <img class="card-img-top" src="https://placehold.it/150x100" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet</p>
-          </div>
-        </div>
-      </div>
-
-      {#      <div class="col-md-2 mb-5">#}
-      {#        <div class="card h-150">#}
-      {#          <img class="card-img-top" src="https://placehold.it/150x100" alt="">#}
-      {#          <div class="card-body">#}
-      {#            <h4 class="card-title">Card title</h4>#}
-      {#            <p class="card-text">Lorem ipsum dolor sit amet</p>#}
-      {#          </div>#}
-      {#          <div class="card-footer">#}
-      {#            <a href="#" class="btn btn-primary">Find Out More!</a>#}
-      {#          </div>#}
-      {#        </div>#}
+      {% endfor %}
     </div>
     <!-- /.row -->
-
   </div>
-  <!-- /.container -->
+    <!-- /.container -->
 
 {% endblock %}

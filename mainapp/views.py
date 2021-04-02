@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import News
+from employer.models import  Company
 
 def index(request):
     print(request)   # <WSGIRequest: GET '/news/'>
     news = News.objects.all()
+    companies = Company.objects.all()[:6]
     # news = News.objects.order_by('-created_at')
     context = {
         'news': news,
-        'title': 'Список новостей'
+        'companies':companies,
+        'title': 'InfoJob Home'
     }
     # ключи из словарей затем используются в качестве переменных в шаблонах
     return render(request, 'mainapp/index.html', context)

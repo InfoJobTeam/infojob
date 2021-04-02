@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb ">
       <ol class="breadcrumb alert alert-success">
         <li class="breadcrumb-item"><a href="{% url 'employer:employer' %}">employer</a></li>
-        <li class="breadcrumb-item active"><a href="{% url 'employer:company_detail' pk=object.id %}">company</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'employer:vacancy_detail' pk=object.id %}">vacancy</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ object.pk }} /</li>
       </ol>
     </nav>
@@ -14,37 +14,36 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <h2><b> {{ object.company_name }} </b></h2>
+        <h2><b> {{ object.position }} </b></h2>
       </div>
       <div class="card-body col-md-9">
         <table class="table">
           {% if object %}
             <tr>
-              <td><img src="/media/{{ object.logo_pic|default:'companies/logo-placeholder.png' }}"
-                       alt="{{ object.company_name }}" width="250"></td>
-              <td><h3>{{ object.company_name }}</h3></td>
+              <th>Company</th>
+              <td><h3>{{ object.company }}</h3></td>
             </tr>
           {% endif %}
 
-          {% if object.industry_name %}
+          {% if object.city %}
             <tr>
-              <th>Industry</th>
-              <td><h6>{{ object.industry_name }}</h6></td>
+              <th>City</th>
+              <td><h6>{{ object.city }}</h6></td>
             </tr>
           {% endif %}
 
 
-          {% if object.site_link %}
+          {% if object.compensation %}
             <tr>
-              <th>Site</th>
-              <td><h6>{{ object.site_link }}</h6></td>
+              <th>Compensation</th>
+              <td><h6>{{ object.compensation }}</h6></td>
             </tr>
           {% endif %}
 
-          {% if object.email %}
+          {% if object.duties %}
             <tr>
-              <th>Email</th>
-              <td><h6>{{ object.email }}</h6></td>
+              <th>Duties</th>
+              <td><h6>{{ object.duties }}</h6></td>
             </tr>
           {% endif %}
 
