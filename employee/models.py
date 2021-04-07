@@ -22,9 +22,11 @@ class CV(models.Model):
     profession = models.CharField(max_length=150, verbose_name='профессия')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')
+    # employer = models.ManyToManyField(settings.AUTH_USER_MODEL, through='EmployerCvRelation', related_name='look_up')
+
 
     def __str__(self):
-        return f"{self.family_name} {self.first_name}, {self.position_seek}"
+        return f"{self.family_name} {self.first_name}, {self.position_seek}, {self.compensation_seek}"
 
     class Meta:
         verbose_name = 'Резюме'
@@ -46,6 +48,9 @@ class JobExp(models.Model):
 
 
 
+
+
+
 # class Education(models.Model):
 #
 #     BACHALOR = 'БАКАЛАВР'
@@ -63,17 +68,4 @@ class JobExp(models.Model):
 
 
 
-# class AddFavoriteVacancy(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_favorite')
-#     favorite = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='wish_vacancy')
-#     # comments = models.TextField(verbose_name='коментарий')
-#     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
 
-
-# class Response(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_response')
-#     cv = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='my_cv')
-#     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='to_vacancy')
-#     comments = models.TextField(verbose_name='коментарий', blank=True)
-#     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
-#     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')

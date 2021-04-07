@@ -14,4 +14,6 @@ urlpatterns = [
     path('vacancy/create/', VacancyCreate.as_view(), name='vacancy_create'),
     path('vacancy/update/<int:pk>/', VacancyUpdate.as_view(), name='vacancy_update'),
     path('vacancy/delete/<int:pk>/', VacancyDelete.as_view(), name='vacancy_delete'),
+    path('cv/favorits/', cv_favorites, name='favorites_cv'),
+    path('cv/filter/', CvFilterView.as_view(), name='filter_cv'),
 ]

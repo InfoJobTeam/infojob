@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-# from employee.models import CV
+
 
 
 class Company(models.Model):
@@ -43,6 +43,9 @@ class Vacancy(models.Model):
     is_checked = models.BooleanField(default=True, verbose_name='проверено')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')
+    # employee = models.ManyToManyField(settings.AUTH_USER_MODEL, through='EmployeeVacancyRelation', related_name='look_for')
+
+
 
     def __str__(self):
         return f"{self.position}, {self.city}, {self.compensation}"
@@ -53,17 +56,3 @@ class Vacancy(models.Model):
         ordering = ['position', '-compensation']
 
 
-
-# class AddFavoriteCv(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_favorite')
-#     favorite_cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='wish_cv')
-#     # comments = models.TextField(verbose_name='коментарий')
-
-
-# class Invitation(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='have_invitation')
-#     cv = models.ForeignKey(CV, on_delete=models.CASCADE, related_name='to_cv')
-#     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name='my_vacancy')
-#     comments = models.TextField(verbose_name='коментарий', blank=True)
-#     created_at = models.DateTimeField(auto_now_add=True, verbose_name='создано')
-#     updated_at = models.DateTimeField(auto_now=True, verbose_name='обновлено')

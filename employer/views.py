@@ -1,12 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.shortcuts import render
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.views.generic.detail import DetailView
 # from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 # from .forms import *
+from .forms import CVFilterForm
 from .models import *
+from employee.models import *
 # from django.db import transaction
 # from django.http import HttpResponse
 
@@ -107,3 +111,37 @@ class VacancyDelete(LoginRequiredMixin, DeleteView):
     context_object_name = 'vacancy'
     template_name = 'employer/confirm_delete.html'
     success_url = reverse_lazy('employer:employer')
+
+
+#############################################################################################
+#             Add Favorite CV Views
+#############################################################################################
+
+class CvFilterView(FormView):
+    template_name = 'employer/includes/inc_filter_cv.html'
+    form_class = CVFilterForm
+
+    def form_valid(self, form):
+        if '' in self.request.POST:
+            self.filter = ''
+        else:
+            self.filter = '?position_seek=' + form.cleaned_data['position_seek']
+
+        response = super().form_valid(form)
+        return response
+
+    def get_success_url(self):
+        return reverse_lazy('employer:employer') + self.filter   # Add URL!!!
+
+
+
+def cv_favorites(request):
+    data = dict()
+    if request.method == 'GET':
+        cvs = CV.objects.all()
+        data['table'] = render_to_string(
+            'employer/includes/inc_cv_table.html',
+            {'cvs': cvs},
+            request=request
+        )
+        return JsonResponse(data)

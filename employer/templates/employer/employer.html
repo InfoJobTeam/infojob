@@ -4,6 +4,9 @@
 
 {% block content %}
 
+
+  <!-- Container for BradCrumbs-->
+
   <div class="container ">
     <nav aria-label="breadcrumb ">
       <ol class="breadcrumb alert alert-success">
@@ -116,6 +119,15 @@
     </div>
 
   </div>
-  <!-- End Container for Vacancies-->
+  <!-- End Container for Vacancies -->
+
+
+  <div class="col-12 mb-3">
+            {% if books %}
+              {% include "employer/includes/inc_cv_table.html" %}
+            {% else %}
+              <p class="no-books text-primary">No books added yet.</p>
+            {% endif %}
+  </div>
 
 {% endblock %}

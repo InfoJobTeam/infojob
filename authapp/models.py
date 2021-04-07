@@ -18,5 +18,5 @@ class InfojobUser(AbstractUser):
     user_role = models.CharField(max_length=25, choices=ROLE, verbose_name='роль')
 
     def __str__(self):
-        return f"{self.username} {self.email} {self.user_role}"
+        return f"{self.username} ({self.user_role})"
 

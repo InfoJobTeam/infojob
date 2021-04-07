@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'employee.apps.EmployeeConfig',
     'employer.apps.EmployerConfig',
+    'msgapp.apps.MsgappConfig',
     'crispy_forms',
     'dynamic_formsets',
 ]
@@ -133,4 +134,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 AUTH_USER_MODEL = 'authapp.InfojobUser'
+
 CRISPY_FAILS_SILENTLY = not DEBUG
